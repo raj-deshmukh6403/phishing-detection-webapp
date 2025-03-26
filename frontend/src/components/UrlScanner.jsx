@@ -32,7 +32,7 @@ const UrlScanner = () => {
 
       const data = await response.json();
       setResult(data);
-    } catch  {
+    } catch {
       setError("❌ Error scanning the URL.");
     }
 
@@ -77,10 +77,32 @@ const UrlScanner = () => {
           <p>
             <strong>🔐 SSL Certificate:</strong> {result.ssl_valid ? "Valid ✅" : "Invalid ❌"}
           </p>
-          <p>⚡ Confidence Score: {result.confidence_score !== undefined ? `${result.confidence_score}%` : "N/A"}</p>
+          <p>
+            <strong>⚡ Confidence Score:</strong> {result.confidence_score}%
+          </p>
+          <p>
+            <strong>🛡️ Google Safe Browsing:</strong> {result.safe_browsing}
+          </p>
+          <p>
+            <strong>🌎 DNS Records:</strong> {result.dns_records.length > 0 ? result.dns_records.join(", ") : "None ❌"}
+          </p>
+          <p>
+            <strong>📈 Historical Rank:</strong> {result.historical_rank || "Not Available"}
+          </p>
+          <p>
+            <strong>🤖 AI Explanation:</strong> {result.ai_explanation}
+          </p>
 
+          {/* Screenshot */}
+          {result.screenshot && (
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold">📸 Website Screenshot</h3>
+              <img src={result.screenshot} alt="Website Screenshot" className="mt-2 w-full rounded-md border" />
+            </div>
+          )}
 
-          <ScoreChart scores={result.scores} />
+          {/* Score Chart */}
+          <ScoreChart scores={result.scores} prediction={result.prediction} />
         </div>
       )}
     </div>

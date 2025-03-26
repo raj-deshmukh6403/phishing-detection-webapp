@@ -6,7 +6,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ScoreChart = ({ scores, prediction }) => {
-  // ✅ Ensure override reflects in frontend too
+  // Override scores if the final prediction is Benign due to SSL & WHOIS
   const adjustedScores = prediction === "Benign" ? { benign: 100, phishing: 0, defacement: 0 } : scores;
 
   const data = {

@@ -2,6 +2,9 @@ import ssl
 import socket
 import whois
 import datetime
+import requests
+import os
+import re
 from urllib.parse import urlparse
 
 # Get SSL Certificate Expiry
@@ -34,3 +37,24 @@ def get_domain_age(url):
         return age
     except:
         return -1  # Failed to retrieve WHOIS
+    
+    
+def get_screenshot(url):
+    """Takes a screenshot of the webpage using a screenshot API and returns its accessible path."""
+    api_key = "1c39be"  # Replace with actual API key
+    screenshot_url = f"https://api.screenshotmachine.com?key={api_key}&url={url}&dimension=1024x768"
+
+    response = requests.get(screenshot_url)
+    
+    if response.status_code == 200:
+        filename = url.replace("https://", "").replace("http://", "").replace("/", "_") + ".png"
+        filepath = f"screenshots/{filename}"
+        os.makedirs("screenshots", exist_ok=True)
+        
+        with open(filepath, "wb") as f:
+            f.write(response.content)
+        
+        return f"http://127.0.0.1:8000/{filepath}"  # Ensure frontend can access it
+    else:
+        return None
+
