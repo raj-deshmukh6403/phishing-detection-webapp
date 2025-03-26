@@ -1,0 +1,15 @@
+# Backend
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+models/
+
+# Frontend
+node_modules/
+dist/
+.vite/
+.vscode/
+
+backend/malicious_phish.csv

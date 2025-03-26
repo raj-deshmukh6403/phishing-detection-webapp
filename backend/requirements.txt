@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+scikit-learn
+lightgbm
+pandas
+numpy
+joblib
+python-multipart
+tld
+python-whois
