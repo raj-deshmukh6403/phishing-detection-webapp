@@ -1,7 +1,7 @@
 # 🚀 Phishing Website Detection Web App
 
 <div align="center">
-  <img src="path/to/your/logo.png" alt="Project Logo" width="200"/>
+  <img src="assets/logo.png" alt="Project Logo" width="200"/>
   <br />
   <p><strong>A machine learning-powered web application to detect phishing websites</strong></p>
 </div>
